@@ -1,12 +1,14 @@
 package geomati.co.events;
 
+import static org.mockito.Matchers.isNull;
+import static org.mockito.Matchers.same;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import geomati.co.events.Event.Type;
+import geomati.co.events.ExceptionEvent.Severity;
 import junit.framework.TestCase;
-
 
 public class EventBusTest extends TestCase {
 
@@ -58,7 +60,9 @@ public class EventBusTest extends TestCase {
 		ExceptionEventHandler handler = mock(ExceptionEventHandler.class);
 		EventBus.getInstance().addHandler(ExceptionEvent.TYPE, handler);
 		String message = "message";
-		EventBus.getInstance().fireEvent(new ExceptionEvent(message));
-		verify(handler).error(message);
+		EventBus.getInstance().fireEvent(
+				new ExceptionEvent(Severity.ERROR, message, null));
+		verify(handler).exception(same(Severity.ERROR), same(message),
+				isNull(Throwable.class));
 	}
 }
