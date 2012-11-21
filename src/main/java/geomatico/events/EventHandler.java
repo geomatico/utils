@@ -1,4 +1,4 @@
-package geomati.co.events;
+package geomatico.events;
 
 /**
  * Marker interface for event handlers.

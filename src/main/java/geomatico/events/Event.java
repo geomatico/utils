@@ -1,4 +1,4 @@
-package geomati.co.events;
+package geomatico.events;
 
 /**
  * Interface that must be implemented by all the events managed by the

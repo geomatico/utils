@@ -1,12 +1,12 @@
-package geomati.co.events;
+package geomatico.events;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import geomati.co.events.EventBus;
-import geomati.co.events.ExceptionEvent;
-import geomati.co.events.ExceptionEventHandler;
+import geomatico.events.EventBus;
+import geomatico.events.ExceptionEvent;
+import geomatico.events.ExceptionEventHandler;
 import junit.framework.TestCase;
 
 import org.mockito.Mockito;

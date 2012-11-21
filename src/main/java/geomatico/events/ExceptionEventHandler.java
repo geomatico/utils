@@ -1,4 +1,4 @@
-package geomati.co.events;
+package geomatico.events;
 
 /**
  * Handler for exception management.
