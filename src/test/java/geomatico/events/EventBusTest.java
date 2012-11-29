@@ -5,15 +5,18 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import geomatico.events.EventBus;
-import geomatico.events.ExceptionEvent;
-import geomatico.events.ExceptionEventHandler;
 import geomatico.events.ExceptionEvent.Severity;
 import junit.framework.TestCase;
 
 import org.mockito.Mockito;
 
 public class EventBusTest extends TestCase {
+
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		EventBus.getInstance().removeAllHandlers();
+	}
 
 	public void testSimpleEvent() {
 		ExceptionEventHandler handler = mock(ExceptionEventHandler.class);
@@ -73,5 +76,11 @@ public class EventBusTest extends TestCase {
 		Runtime.getRuntime().gc();
 
 		EventBus.getInstance().fireEvent(event);
+	}
+
+	public void testFireNoHandled() throws Exception {
+		// Just check that nothing happens, no exception is thrown
+		EventBus.getInstance().fireEvent(
+				new ExceptionEvent("", mock(Exception.class)));
 	}
 }

@@ -59,6 +59,11 @@ public class EventBus {
 	 */
 	public synchronized <H extends EventHandler> void fireEvent(Event<H> event) {
 		Set<WeakReference<EventHandler>> handlers = map.get(event.getClass());
+
+		if (handlers == null) {
+			return;
+		}
+
 		ArrayList<WeakReference<EventHandler>> toRemove = new ArrayList<WeakReference<EventHandler>>();
 		for (WeakReference<EventHandler> handlerReference : handlers) {
 			@SuppressWarnings("unchecked")
@@ -99,5 +104,9 @@ public class EventBus {
 				return str1.compareTo(str2);
 			}
 		}
+	}
+
+	void removeAllHandlers() {
+		map.clear();
 	}
 }
