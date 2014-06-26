@@ -106,7 +106,7 @@ public class EventBus {
 		}
 	}
 
-	void removeAllHandlers() {
+	public void removeAllHandlers() {
 		map.clear();
 	}
 }
